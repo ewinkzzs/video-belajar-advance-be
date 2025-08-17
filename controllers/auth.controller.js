@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs'
 import crypto from 'crypto'
 import mailTransporter from '../lib/mailer.js'
-import { createUser, getUserByEmail, getUserByPhone } from '../models/users.js'
+import { createUser, getUserByEmail, getUserByPhone, activateUserByToken } from '../models/users.js'
 
 export async function register(req, res, next) {
   try {
@@ -51,6 +51,24 @@ export async function register(req, res, next) {
       message: "User registered successfully",
       user
     })
+  } catch (error) {
+    next(error)
+  }
+}
+
+export async function activateUser(req, res, next) {
+  try {
+    const { token } = req.query
+    if (!token) {
+      return res.status(400).json({ message: 'Token is required for activation' })
+    }
+
+    const user = await activateUserByToken(token)
+    if (!user) {
+      return res.status(404).json({ message: 'Invalid or expired token' })
+    }
+
+    res.json({ message: 'User activated successfully, you can now login.' })
   } catch (error) {
     next(error)
   }

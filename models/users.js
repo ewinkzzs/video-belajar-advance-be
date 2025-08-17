@@ -25,3 +25,14 @@ export async function getUserByPhone(phone) {
   const [rows] = await pool.query(sql, [phone])
   return rows[0]
 }
+
+export async function activateUserByToken(token) {
+  const sqlCheck = `SELECT * FROM tb_user WHERE token = ?`
+  const [rows] = await pool.query(sqlCheck, [token])
+  if (rows.length === 0) return null
+
+  const sqlUpdate = `UPDATE tb_user SET status = 'Active' WHERE token = ?`
+  await pool.query(sqlUpdate, [token])
+
+  return rows[0] 
+}
