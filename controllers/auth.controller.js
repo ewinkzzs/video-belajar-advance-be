@@ -1,7 +1,9 @@
 import bcrypt from 'bcryptjs'
 import crypto from 'crypto'
+import jwt from 'jsonwebtoken'
 import mailTransporter from '../lib/mailer.js'
 import { createUser, getUserByEmail, getUserByPhone, activateUserByToken } from '../models/users.js'
+import dotenv from 'dotenv'
 
 export async function register(req, res, next) {
   try {
@@ -69,6 +71,50 @@ export async function activateUser(req, res, next) {
     }
 
     res.json({ message: 'User activated successfully, you can now login.' })
+  } catch (error) {
+    next(error)
+  }
+}
+
+export async function login(req, res, next) {
+  try {
+    const { email, password } = req.body
+
+    if (!email || !password) {
+      return res.status(400).json({ message: 'Email and password are required' })
+    }
+
+    const user = await getUserByEmail(email)
+    if (!user) {
+      return res.status(401).json({ message: 'Invalid email or password' })
+    }
+
+    // Cek status user harus aktif
+    if (user.status !== 'Active') {
+      return res.status(403).json({ message: 'User is not activated yet' })
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password)
+    if (!passwordMatch) {
+      return res.status(401).json({ message: 'Invalid email or password' })
+    }
+
+    // Buat token JWT
+    const payload = {
+      id: user.id,
+      email: user.email,
+      full_name: user.full_name
+    }
+
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN || '1h'
+    })
+
+    res.json({
+      message: "Login successful",
+      token
+    })
+
   } catch (error) {
     next(error)
   }
