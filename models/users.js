@@ -36,3 +36,9 @@ export async function activateUserByToken(token) {
 
   return rows[0] 
 }
+
+export async function updateUserAvatar(id, avatarFilename) {
+  const sql = `UPDATE tb_user SET avatar = ? WHERE id = ?`
+  const [result] = await pool.query(sql, [avatarFilename, id])
+  return result.affectedRows
+}

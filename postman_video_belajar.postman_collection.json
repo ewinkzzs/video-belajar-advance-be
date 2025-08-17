@@ -7,18 +7,30 @@
 	},
 	"item": [
 		{
-			"name": "list",
+			"name": "tutor - list",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJld2lua3p6c0BnbWFpbC5jb20iLCJmdWxsX25hbWUiOiIyMDIwMiIsImlhdCI6MTc1NTQ0NDc2OCwiZXhwIjoxNzU1NDQ4MzY4fQ.nTQoEcjCP2vUrgMI5XppO_x9CxYUsX70v8WsKveqTXA",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/tutor",
+					"raw": "http://localhost:8080/api/v1/tutor",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"api",
+						"v1",
 						"tutor"
 					]
 				}
@@ -26,13 +38,13 @@
 			"response": []
 		},
 		{
-			"name": "create",
+			"name": "tutor - create",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nama_tutor\" : \"Fino\",\r\n    \"pekerjaan\" : \"Aktor\",\r\n    \"tempat_kerja\" : \"Filemnesi\"\r\n}",
+					"raw": "{\r\n    \"nama_tutor\" : \"Fina\",\r\n    \"pekerjaan\" : \"Aktor\",\r\n    \"tempat_kerja\" : \"Filemnesi\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,13 +52,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/tutor",
+					"raw": "http://localhost:8080/api/v1/tutor",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"api",
+						"v1",
 						"tutor"
 					]
 				}
@@ -54,7 +68,7 @@
 			"response": []
 		},
 		{
-			"name": "update",
+			"name": "tutor - update",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -68,13 +82,15 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/tutor/3",
+					"raw": "http://localhost:8080/api/v1/tutor/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"api",
+						"v1",
 						"tutor",
 						"3"
 					]
@@ -83,20 +99,189 @@
 			"response": []
 		},
 		{
-			"name": "delete",
+			"name": "tutor - delete",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/tutor/4",
+					"raw": "http://localhost:8080/api/v1/tutor/5",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"api",
+						"v1",
 						"tutor",
-						"4"
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"full_name\":\"20202\",\r\n    \"username\":\"Invoice\",\r\n    \"email\":\"ewinkzzs@gmail.com\",\r\n    \"phone\" : \"098762766\",\r\n    \"password\":\"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"ewinkzzs@gmail.com\",\r\n    \"password\" : \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJld2lua3p6c0BnbWFpbC5jb20iLCJmdWxsX25hbWUiOiIyMDIwMiIsImlhdCI6MTc1NTQ0NDc2OCwiZXhwIjoxNzU1NDQ4MzY4fQ.nTQoEcjCP2vUrgMI5XppO_x9CxYUsX70v8WsKveqTXA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/tutor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"tutor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "course - list",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJld2lua3p6c0BnbWFpbC5jb20iLCJmdWxsX25hbWUiOiIyMDIwMiIsImlhdCI6MTc1NTQ0NDc2OCwiZXhwIjoxNzU1NDQ4MzY4fQ.nTQoEcjCP2vUrgMI5XppO_x9CxYUsX70v8WsKveqTXA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/course?category=Programming&amp;sortBy=harga&amp;sortOrder=DESC&amp;search=JavaScript",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"course"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "Programming"
+						},
+						{
+							"key": "amp;sortBy",
+							"value": "harga"
+						},
+						{
+							"key": "amp;sortOrder",
+							"value": "DESC"
+						},
+						{
+							"key": "amp;search",
+							"value": "JavaScript"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "verify-email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/activation?token=b45855f9-efee-49ab-99e2-076ad48acddd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"activation"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "b45855f9-efee-49ab-99e2-076ad48acddd"
+						}
 					]
 				}
 			},
